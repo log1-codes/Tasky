@@ -10,6 +10,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { AddTaskDialog } from "./AddTaskDialog";
 const NavItem: React.FC<{ children: ReactNode }> = ({ children }) => (
   <motion.div
     whileHover={{ y: -2, transition: { duration: 0.2 } }}
@@ -62,6 +63,7 @@ const Navbar: React.FC = () => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 50 }} 
+                key="signed-out"
               >
                 <div className="flex items-center space-x-4">
                   <NavItem>
@@ -88,13 +90,15 @@ const Navbar: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="flex items-center space-x-4"
+                key="signed-in"
               >
                 <NavItem>
-                 
+                 <AddTaskDialog>
                   <button className="flex items-center bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white rounded-full font-medium text-sm h-10 px-4 cursor-pointer transition-colors">
                     <FiPlus className="mr-2" />
                     Add Task
                   </button>
+                  </AddTaskDialog>
                 </NavItem>
                 <div className="ml-2">
                     <UserButton afterSignOutUrl="/" />
