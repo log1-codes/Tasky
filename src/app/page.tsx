@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle2, Filter, Users } from 'lucide-react';
 import { SignUpButton } from '@clerk/nextjs';
+import Navbar from "@/components/Navbar";
 
 const AppPreview = () => (
   <motion.div
@@ -182,6 +183,7 @@ export default function Home() {
 
   return (
     <div className="bg-zinc-950 text-white min-h-screen">
+      <Navbar />
       <main className="overflow-hidden">
         
       
