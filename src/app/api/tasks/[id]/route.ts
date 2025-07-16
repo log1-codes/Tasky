@@ -2,17 +2,17 @@ import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/prisma";
 
-interface Params {
-  params: { id: string };
-}
-
-export async function PATCH(request: Request, { params }: Params) {
+// PATCH /api/tasks/[id]
+export async function PATCH(
+  request: Request,
+  context: { params: { id: string } }
+) {
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id } = await context.params;
   const taskId = parseInt(id, 10);
   const taskData = await request.json();
 
@@ -31,13 +31,17 @@ export async function PATCH(request: Request, { params }: Params) {
   return NextResponse.json({ message: "Task updated successfully" });
 }
 
-export async function DELETE(request: Request, { params }: Params) {
+// DELETE /api/tasks/[id]
+export async function DELETE(
+  request: Request,
+  context: { params: { id: string } }
+) {
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id } = await context.params;
   const taskId = parseInt(id, 10);
 
   const deletedTask = await prisma.task.deleteMany({
