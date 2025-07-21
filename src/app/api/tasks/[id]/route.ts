@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 // PATCH /api/tasks/[id]
 export async function PATCH(
   request: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   const { userId } = await auth();
   if (!userId) {
@@ -34,7 +34,7 @@ export async function PATCH(
 // DELETE /api/tasks/[id]
 export async function DELETE(
   request: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   const { userId } = await auth();
   if (!userId) {

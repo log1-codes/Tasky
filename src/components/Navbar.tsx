@@ -56,11 +56,11 @@ export default function Navbar({ onTaskAdded }: { onTaskAdded?: () => void }) {
 
             <SignedIn>
               <motion.div
-                key="signed-in"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 className="flex items-center space-x-4"
+                key="signed-in"
               >
                 <AddTaskDialog onTaskAdded={onTaskAdded}>
                   <Button className="flex items-center bg-violet-600 hover:bg-violet-700 rounded-full font-medium text-sm h-10 px-4 cursor-pointer">
